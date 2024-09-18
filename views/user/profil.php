@@ -6,7 +6,7 @@
                 <h2 class="mb-4">Profil</h2>
                 <p><strong>Email:</strong> {{ user.email_Utilisateur }}</p>
                 <h3 class="mt-4">Ajouter une enchère</h3>
-                <a href="#" class="btn btn-primary btn-block">Ajouter une enchère</a>
+                <a href="{{ base }}/enchere/create" class="btn btn-primary btn-block">Ajouter une enchère</a>
             </div>
         </div>
     </div>
