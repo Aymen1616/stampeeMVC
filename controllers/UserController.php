@@ -24,8 +24,8 @@ class UserController {
         if ($validator->isSuccess()) {
             $user = new User;
             $data['mot_de_passe_Utilisateur'] = $user->hashPassword($data['mot_de_passe']);
-            $data['id_privilege'] = 2; // ID du privilège de membre par défaut
-            $data['email_Utilisateur'] = $data['email']; // Assigner l'email correctement
+            $data['id_privilege'] = 2; 
+            $data['email_Utilisateur'] = $data['email'];
             $insert = $user->insert($data);
             if ($insert) {
                 return View::redirect('login');
