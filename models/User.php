@@ -6,7 +6,7 @@ use App\Models\CRUD;
 class User extends CRUD {
     protected $table = "utilisateur";
     protected $primaryKey = "id_Utilisateur";
-    protected $fillable = [ 'mot_de_passe_Utilisateur','email_Utilisateur', 'id_privilege'];
+    protected $fillable = [ 'nom_Utilisateur','mot_de_passe_Utilisateur','email_Utilisateur', 'id_privilege'];
     private $salt = "H4@1&";
 
     public function hashPassword($password, $cost = 10){
@@ -23,6 +23,7 @@ class User extends CRUD {
             if(password_verify($password, $user['mot_de_passe_Utilisateur'])) {
                 session_regenerate_id();
                 $_SESSION['user_id'] = $user['id_Utilisateur'];
+                $_SESSION['nom'] = $user['nom_Utilisateur'];
                 $_SESSION['email'] = $user['email_Utilisateur'];
                 $_SESSION['password'] = $password;
                 $_SESSION['privilege_id'] = $user['id_Privilege'];
@@ -41,6 +42,7 @@ class User extends CRUD {
     public function createAdmin($email, $password) {
         $hashed_password = $this->hashPassword($password);
         $data = [
+            'nom_Utilisateur' => $nom,
             'email_Utilisateur' => $email,
             'mot_de_passe_Utilisateur' => $hashed_password,
             'id_privilege' => 1 

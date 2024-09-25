@@ -26,8 +26,10 @@
                         <img src="{{ base }}/uploads/{{ enchere.main_image }}" alt="Image principale" width="100">
                     </td>
                     <td>
-                        <a href="{{ base }}/enchere/edit/{{ enchere.id_Enchere }}" class="btn btn-warning">Modifier</a>
-                        <form action="{{ base }}/enchere/delete-enchere/{{ enchere.id_Enchere }}" method="post" style="display:inline;">
+                        <a href="{{ base }}/enchere/show?id={{ enchere.id_Enchere }}" class="btn btn-info">Voir</a>
+                        <a href="{{ base }}/enchere/edit?id={{ enchere.id_Enchere }}" class="btn btn-warning">Modifier</a>
+                        <form action="{{ base }}/enchere/delete" method="post" style="display:inline;">
+                            <input type="hidden" name="id" value="{{ enchere.id_Enchere }}">
                             <button type="submit" class="btn btn-danger">Supprimer</button>
                         </form>
                     </td>

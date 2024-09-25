@@ -6,6 +6,13 @@
                 <form method="post">
                     <h2 class="mb-4">S'inscrire</h2>
                     <div class="form-group">
+                        <label for="nom">Nom</label>
+                        <input type="text" class="form-control" id="nom" name="nom" value="{{ user.nom }}">
+                        {% if errors.nom_Utilisateur is defined %}
+                            <div class="error">{{ errors.nom_Utilisateur }}</div>
+                        {% endif %}
+                    </div>
+                    <div class="form-group">
                         <label for="mot_de_passe">Mot de passe</label>
                         <input type="password" class="form-control" id="mot_de_passe" name="mot_de_passe">
                         {% if errors.mot_de_passe_Utilisateur is defined %}

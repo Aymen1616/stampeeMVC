@@ -108,11 +108,15 @@ abstract class CRUD extends \PDO{
         return $relatedModel->where($foreignKey, $this->$localKey)->get();
     }
 
-    public function where($column, $value) {
+    public function where($column, $value, $single = true) {
         $query = "SELECT * FROM {$this->table} WHERE {$column} = ?";
         $stmt = $this->prepare($query);
         $stmt->execute([$value]);
-        return $stmt->fetchAll(\PDO::FETCH_ASSOC);
+        if ($single) {
+            return $stmt->fetch(\PDO::FETCH_ASSOC);
+        } else {
+            return $stmt->fetchAll(\PDO::FETCH_ASSOC);
+        }
     }
 
 }

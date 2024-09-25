@@ -5,6 +5,7 @@
         <thead>
             <tr>
                 <th>ID</th>
+                <th>Nom</th>
                 <th>Email</th>
                 <th>Privilège</th>
                 <th>Action</th>
@@ -14,6 +15,7 @@
             {% for user in users %}
                 <tr>
                     <td>{{ user.id_Utilisateur }}</td>
+                    <td>{{ user.nom_Utilisateur }}</td>
                     <td>{{ user.email_Utilisateur }}</td>
                     <td>{{ user.id_Privilege }}</td>
                     <td>

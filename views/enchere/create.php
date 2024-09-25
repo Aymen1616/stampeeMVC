@@ -14,10 +14,15 @@
             <label for="prix_plancher">Prix plancher</label>
             <input type="number" step="5" class="form-control" id="prix_plancher" name="prix_plancher" required>
         </div>
+        {% if isAdmin %}
         <div class="form-group">
             <label for="coup_de_coeur">Coup de cœur</label>
-            <input type="checkbox" id="coup_de_coeur" name="coup_de_coeur" value="1">
+            <select class="form-control" id="coup_de_coeur" name="coup_de_coeur">
+                <option value="1">Oui</option>
+                <option value="0">Non</option>
+            </select>
         </div>
+    {% endif %}
         <h3 class="mt-4">Ajouter un timbre</h3>
         <div class="form-group">
             <label for="nom_Timbre">Nom du timbre</label>

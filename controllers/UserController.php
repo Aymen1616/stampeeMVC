@@ -18,11 +18,13 @@ class UserController {
 
     public function store($data) {
         $validator = new Validator;
+        $validator->field('nom_Utilisateur', $data['nom'])->required()->max(50);
         $validator->field('mot_de_passe_Utilisateur', $data['mot_de_passe'])->min(5)->max(20);
         $validator->field('email_Utilisateur', $data['email'])->email()->required()->max(50)->isUnique('User');
     
         if ($validator->isSuccess()) {
             $user = new User;
+            $data['nom_Utilisateur'] = $data['nom'];
             $data['mot_de_passe_Utilisateur'] = $user->hashPassword($data['mot_de_passe']);
             $data['id_privilege'] = 2; 
             $data['email_Utilisateur'] = $data['email'];

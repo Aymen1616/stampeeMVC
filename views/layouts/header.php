@@ -13,13 +13,18 @@
 <nav class="navbar navbar-light">
     <ul>
         {% if session.privilege_id is defined and session.privilege_id == 1 %}
-            <li><a href="{{ base }}/user/manage-users">Gérer les utilisateurs</a></li>
+            <li><a href="{{ base }}/user/manage-users"> Utilisateurs</a></li>
+            <li><a href="{{ base }}/enchere/manage-encheres">Les enchères</a></li>
         {% endif %}
         
         {% if guest %}
             <li><a href="{{ base }}/user/create">Inscription</a></li>
             <li><a href="{{ base }}/login">Login</a></li>
         {% else %}
+            {% if session.privilege_id != 1 %}
+                <li><a href="{{ base }}/user/profil">Profil</a></li>
+            {% endif %}
+            <li><a href="{{ base }}/enchere/coup-de-coeur">Coup de cœur</a></li>
             <li><a href="{{ base }}/logout">Logout</a></li>
         {% endif %}
     </ul>
@@ -30,7 +35,7 @@
         {% if session.privilege_id == 1 %}
             Hello Admin!
         {% else %}
-            Hello {{ session.email }}!
+            Hello {{ session.nom }}!
         {% endif %}
     {% endif %}
 </main>
