@@ -21,8 +21,6 @@
             <p><strong>Dimensions:</strong> {{ enchere.dimensions_Timbre }}</p>
             <p><strong>Certifié:</strong> {{ enchere.certifie_Timbre ? 'Oui' : 'Non' }}</p>
             
-            <!-- Formulaire pour placer une mise -->
-<!-- Ajoutez ce formulaire dans la vue show.php -->
 <h3 class="mt-4">Placer une mise</h3>
 <form method="post" action="{{ base }}/enchere/place-bid">
     <div class="form-group">
