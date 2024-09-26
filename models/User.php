@@ -39,7 +39,7 @@ class User extends CRUD {
     
     
 
-    public function createAdmin($email, $password) {
+    public function createAdmin($nom, $email, $password) {
         $hashed_password = $this->hashPassword($password);
         $data = [
             'nom_Utilisateur' => $nom,
@@ -47,7 +47,8 @@ class User extends CRUD {
             'mot_de_passe_Utilisateur' => $hashed_password,
             'id_privilege' => 1 
         ];
-
+    
         return $this->insert($data);
     }
+    
 }

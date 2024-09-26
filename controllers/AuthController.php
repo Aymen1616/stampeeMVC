@@ -3,6 +3,7 @@ namespace App\Controllers;
 
 use App\Models\Enchere;
 use App\Models\User;
+use App\Models\Mise;
 use App\Providers\View;
 use App\Providers\Validator;
 
@@ -60,12 +61,13 @@ class AuthController {
         $enchere = new Enchere;
         $encheres = $enchere->selectWithTimbreByUser($_SESSION['user_id']);
         
-        return View::render('user/profil', ['user' => $userData, 'encheres' => $encheres]);
+        $mise = new Mise;
+        $mises = $mise->selectByUser($_SESSION['user_id']);
+        
+        return View::render('user/profil', ['user' => $userData, 'encheres' => $encheres, 'mises' => $mises]);
     }
     
     
-    
-
     public function delete() {
         session_destroy();
         return View::redirect('login');

@@ -23,6 +23,8 @@ Route::post('/enchere/update', 'EnchereController@update');
 Route::post('/enchere/delete', 'EnchereController@delete');
 Route::get('/enchere/coup-de-coeur', 'EnchereController@showCoupDeCoeur');
 Route::get('/enchere/show', 'EnchereController@show');
+Route::get('/encheres', 'EnchereController@all');
+Route::post('/enchere/place-bid', 'EnchereController@placeBid');
 
 
 Route::dispatch();

@@ -6,6 +6,7 @@
                 <h2 class="mb-4">Profil</h2>
                 <p><strong>Nom:</strong> {{ user.nom_Utilisateur }}</p>
                 <p><strong>Email:</strong> {{ user.email_Utilisateur }}</p>
+                
                 <h3 class="mt-4">Mes enchères</h3>
                 <table class="table">
                     <thead>
@@ -42,6 +43,41 @@
                         {% endfor %}
                     </tbody>
                 </table>
+                
+                <h3 class="mt-4">Enchères sur lesquelles j'ai placé une mise</h3>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Date de début</th>
+                            <th>Date de fin</th>
+                            <th>Prix plancher</th>
+                            <th>Montant de la mise</th>
+                            <th>Nom du Timbre</th>
+                            <th>Image principale</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for mise in mises %}
+                            <tr>
+                                <td>{{ mise.id_Enchere }}</td>
+                                <td>{{ mise.date_debut }}</td>
+                                <td>{{ mise.date_fin }}</td>
+                                <td>{{ mise.prix_plancher }}</td>
+                                <td>{{ mise.prix_mise }}</td>
+                                <td>{{ mise.nom_Timbre }}</td>
+                                <td>
+                                    <img src="{{ base }}/uploads/{{ mise.main_image }}" alt="Image principale" width="100">
+                                </td>
+                                <td>
+                                    <a href="{{ base }}/enchere/show?id={{ mise.id_Enchere }}" class="btn btn-info">Voir</a>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+                
                 <h3 class="mt-4">Ajouter une enchère</h3>
                 <a href="{{ base }}/enchere/create" class="btn btn-primary btn-block">Ajouter une enchère</a>
             </div>

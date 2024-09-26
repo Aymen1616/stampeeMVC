@@ -22,14 +22,17 @@
             <p><strong>Certifié:</strong> {{ enchere.certifie_Timbre ? 'Oui' : 'Non' }}</p>
             
             <!-- Formulaire pour placer une mise -->
-            <h3 class="mt-4">Placer une mise</h3>
-            <form method="post" action="#">
-                <div class="form-group">
-                    <label for="montant">Montant de la mise</label>
-                    <input type="number" class="form-control" id="montant" name="montant" required>
-                </div>
-                <button type="submit" class="btn btn-primary">Placer la mise</button>
-            </form>
+<!-- Ajoutez ce formulaire dans la vue show.php -->
+<h3 class="mt-4">Placer une mise</h3>
+<form method="post" action="{{ base }}/enchere/place-bid">
+    <div class="form-group">
+        <label for="montant">Montant de la mise</label>
+        <input type="number" class="form-control" id="montant" name="montant" required>
+    </div>
+    <input type="hidden" name="id_Enchere" value="{{ enchere.id_Enchere }}">
+    <button type="submit" class="btn btn-primary">Placer la mise</button>
+</form>
+
         </div>
     </div>
 </div>

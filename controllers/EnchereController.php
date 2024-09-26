@@ -6,6 +6,8 @@ use App\Models\Condition;
 use App\Models\Timbre; 
 use App\Models\Image;
 use App\Models\User;
+use App\Models\Mise;
+
 use App\Providers\View;
 use App\Providers\Validator;
 
@@ -74,13 +76,6 @@ class EnchereController {
     }
     
     
-    
-    
-
-    
-    
-    
-
     public function manageEncheres() {
         $enchere = new Enchere;
         $encheres = $enchere->selectWithTimbre();
@@ -97,18 +92,7 @@ class EnchereController {
     
         return View::render('enchere/manage', ['encheres' => $encheres]);
     }
-    
-    
-    
 
-    // public function deleteEnchere($id) {
-    //     $enchere = new Enchere;
-    //     if ($enchere->delete($id)) {
-    //         return View::redirect('enchere/manage-encheres');
-    //     } else {
-    //         return View::render('error', ['message' => 'Erreur lors de la suppression de l\'enchère.']);
-    //     }
-    // }
 
     public function delete($data) {
         if (!isset($data['id'])) {
@@ -148,17 +132,6 @@ class EnchereController {
             return View::render('error', ['message' => 'Erreur lors de la suppression de l\'enchère.']);
         }
     }
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
 
     
     public function edit($data = []) {
@@ -183,8 +156,6 @@ class EnchereController {
     }
     
     
-    
-
     public function update($data) {
         if ($_SESSION['privilege_id'] == 1 || isset($data['id'])) {
             $id = $data['id'];
@@ -225,6 +196,7 @@ class EnchereController {
         return View::render('enchere/coup_de_coeur', ['encheres' => $coupDeCoeurEncheres]);
     } 
     
+
     public function show($data) {
         if (isset($data['id'])) {
             $id = $data['id'];
@@ -237,4 +209,37 @@ class EnchereController {
         }
     }
 
+    
+    public function all() {
+        $enchere = new Enchere;
+        $encheres = $enchere->selectWithTimbre();
+        return View::render('enchere/manage', ['encheres' => $encheres]);
+    }
+    
+    
+    public function placeBid($data) {
+        $validator = new Validator;
+        $validator->field('montant', $data['montant'])->required();
+        
+        if ($validator->isSuccess()) {
+            $data['id_Utilisateur'] = $_SESSION['user_id'];
+            $data['id_Enchere'] = $data['id_Enchere'];
+            $data['prix_mise'] = $data['montant'];
+            $data['date_mise'] = date('Y-m-d H:i:s');
+            
+            $mise = new Mise;
+            $insert = $mise->insert($data);
+            
+            if ($insert) {
+                return View::redirect('user/profil');
+            } else {
+                return View::render('error', ['message' => 'Erreur lors de la mise.']);
+            }
+        } else {
+            $errors = $validator->getErrors();
+            return View::render('enchere/show', ['errors' => $errors, 'enchere' => $data]);
+        }
+    }
+    
+    
 }

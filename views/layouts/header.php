@@ -23,6 +23,7 @@
         {% else %}
             {% if session.privilege_id != 1 %}
                 <li><a href="{{ base }}/user/profil">Profil</a></li>
+                <li><a href="{{ base }}/encheres">Enchères</a></li>
             {% endif %}
             <li><a href="{{ base }}/enchere/coup-de-coeur">Coup de cœur</a></li>
             <li><a href="{{ base }}/logout">Logout</a></li>

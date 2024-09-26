@@ -10,12 +10,14 @@ class Enchere extends CRUD {
         if($field == null){
             $field = $this->primaryKey;
         }
-        $sql = "SELECT e.*, t.id_Timbre FROM $this->table e
+        $sql = "SELECT e.*, t.id_Timbre, i.nom_image AS main_image FROM $this->table e
                 LEFT JOIN timbre t ON e.id_Enchere = t.id_Enchere
+                LEFT JOIN image i ON t.id_Timbre = i.id_Timbre AND i.is_main = 1
                 ORDER BY $field $order";
         $stmt = $this->query($sql);
         return $stmt->fetchAll(\PDO::FETCH_ASSOC);
     }
+    
 
     public function selectWithTimbreByUser($userId) {
         $sql = "SELECT e.*, t.nom_Timbre, i.nom_image AS main_image FROM $this->table e
