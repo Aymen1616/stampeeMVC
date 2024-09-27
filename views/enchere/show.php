@@ -20,17 +20,23 @@
             <p><strong>Tirage:</strong> {{ enchere.tirage_Timbre }}</p>
             <p><strong>Dimensions:</strong> {{ enchere.dimensions_Timbre }}</p>
             <p><strong>Certifié:</strong> {{ enchere.certifie_Timbre ? 'Oui' : 'Non' }}</p>
-            
-<h3 class="mt-4">Placer une mise</h3>
-<form method="post" action="{{ base }}/enchere/place-bid">
-    <div class="form-group">
-        <label for="montant">Montant de la mise</label>
-        <input type="number" class="form-control" id="montant" name="montant" required>
-    </div>
-    <input type="hidden" name="id_Enchere" value="{{ enchere.id_Enchere }}">
-    <button type="submit" class="btn btn-primary">Placer la mise</button>
-</form>
 
+            {% if session.user_id != enchere.id_Utilisateur and session.privilege_id != 1 %}
+                <!-- Formulaire pour placer une mise -->
+                <form action="{{ base }}/enchere/addToFavorites" method="post" style="display:inline;">
+        <input type="hidden" name="id_Enchere" value="{{ enchere.id_Enchere }}">
+        <button type="submit" class="btn btn-primary">Ajouter aux favoris</button>
+    </form>
+                <h3 class="mt-4">Placer une mise</h3>
+                <form method="post" action="{{ base }}/enchere/place-bid">
+                    <div class="form-group">
+                        <label for="montant">Montant de la mise</label>
+                        <input type="number" class="form-control" id="montant" name="montant" required>
+                    </div>
+                    <input type="hidden" name="id_Enchere" value="{{ enchere.id_Enchere }}">
+                    <button type="submit" class="btn btn-primary">Placer la mise</button>
+                </form>
+            {% endif %}
         </div>
     </div>
 </div>

@@ -59,7 +59,7 @@ form{
 footer {
     background-color: #e3f2fd;
     text-align: center;
-    position: fixed;
+    /* position: fixed; */
     bottom: 0;
     width: 100%;
 }

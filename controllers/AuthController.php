@@ -60,12 +60,19 @@ class AuthController {
         
         $enchere = new Enchere;
         $encheres = $enchere->selectWithTimbreByUser($_SESSION['user_id']);
+        $favorites = $enchere->getFavoritesByUser($_SESSION['user_id']);
         
         $mise = new Mise;
         $mises = $mise->selectByUser($_SESSION['user_id']);
         
-        return View::render('user/profil', ['user' => $userData, 'encheres' => $encheres, 'mises' => $mises]);
+        return View::render('user/profil', [
+            'user' => $userData,
+            'encheres' => $encheres,
+            'favorites' => $favorites,
+            'mises' => $mises
+        ]);
     }
+    
     
     
     public function delete() {
