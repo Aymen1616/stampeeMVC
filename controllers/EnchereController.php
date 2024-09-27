@@ -221,7 +221,8 @@ class EnchereController {
             $enchere = new Enchere;
             $details = $enchere->selectDetails($id);
             $images = $enchere->selectImages($details['id_Timbre']);
-            return View::render('enchere/show', ['enchere' => $details, 'images' => $images]);
+            $condition = $enchere->selectCondition($details['id_condition']);
+            return View::render('enchere/show', ['enchere' => $details, 'images' => $images, 'condition' => $condition]);
         } else {
             return View::render('error', ['message' => 'ID de l\'enchère non fourni.']);
         }
@@ -294,6 +295,40 @@ class EnchereController {
     }
 
 
-    
+    public function filter()
+    {
+
+        // Vérifier si des filtres sont définis dans la requête
+        if (empty($_GET)) {
+            // Réinitialiser les filtres dans la session
+            unset($_SESSION['filters']);
+        }
+
+        // Récupérer les filtres depuis la requête
+        $prixPlancher = $_GET['prix_plancher'] ?? null;
+        $datePublication = $_GET['date_publication'] ?? null;
+        $condition = $_GET['condition'] ?? null;
+        $paysOrigine = $_GET['pays_origine'] ?? null;
+
+        // Stocker les filtres dans la session
+        $_SESSION['filters'] = [
+            'prix_plancher' => $prixPlancher,
+            'date_publication' => $datePublication,
+            'condition' => $condition,
+            'pays_origine' => $paysOrigine
+        ];
+
+        // Assurez-vous que $paysOrigine est un tableau
+        if (!is_array($paysOrigine)) {
+            $paysOrigine = [$paysOrigine];
+        }
+
+        // Charger le modèle
+        $enchereModel = new Enchere;
+        $encheres = $enchereModel->getFilteredEncheres($prixPlancher, $datePublication, $condition, $paysOrigine);
+
+        // Charger la vue avec les enchères filtrées
+        return View::render('enchere/manage', ['encheres' => $encheres]);
+    }
     
 }

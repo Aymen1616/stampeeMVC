@@ -27,7 +27,10 @@ Route::get('/encheres', 'EnchereController@all');
 Route::post('/enchere/place-bid', 'EnchereController@placeBid');
 
 Route::post('/enchere/addToFavorites', 'EnchereController@addToFavorites');
-Route::post('/enchere/removeFromFavorites', 'EnchereController@removeFromFavorites');
+Route::post('/enchere/removeFromFavorites','EnchereController@removeFromFavorites');
+
+
+Route::get('/enchere/filter', 'EnchereController@filter');
 
 
 

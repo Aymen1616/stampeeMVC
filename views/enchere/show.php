@@ -20,6 +20,8 @@
             <p><strong>Tirage:</strong> {{ enchere.tirage_Timbre }}</p>
             <p><strong>Dimensions:</strong> {{ enchere.dimensions_Timbre }}</p>
             <p><strong>Certifié:</strong> {{ enchere.certifie_Timbre ? 'Oui' : 'Non' }}</p>
+            <p><strong>Condition:</strong> {{ condition.nom_condition }}</p>
+
 
             {% if session.user_id != enchere.id_Utilisateur and session.privilege_id != 1 %}
                 <!-- Formulaire pour placer une mise -->
@@ -45,7 +47,7 @@
 <script>
     // Ajouter un effet de zoom sur l'image principale
     document.getElementById('main-image').addEventListener('mouseover', function() {
-        this.style.transform = 'scale(1.5)';
+        this.style.transform = 'scale(1.15)';
         this.style.transition = 'transform 0.5s ease';
     });
 

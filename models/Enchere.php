@@ -58,6 +58,14 @@ class Enchere extends CRUD {
         $stmt->execute();
         return $stmt->fetchAll(\PDO::FETCH_ASSOC);
     }
+
+    public function selectCondition($id) {
+        $sql = "SELECT nom_condition FROM `condition` WHERE id_condition = :id";
+        $stmt = $this->prepare($sql);
+        $stmt->bindValue(':id', $id);
+        $stmt->execute();
+        return $stmt->fetch(\PDO::FETCH_ASSOC);
+    }
     
     public function addToFavorites($enchereId, $userId) {
         $sql = "INSERT INTO favoris (id_Enchere, id_Utilisateur, statut) VALUES (:enchereId, :userId, 1)";
@@ -95,6 +103,51 @@ class Enchere extends CRUD {
         $stmt->execute();
         return $stmt->fetchColumn() > 0;
     }
+
+    public function getFilteredEncheres($prixPlancher, $datePublication, $condition, $paysOrigine)
+    {
+        $query = "SELECT e.*, t.pays_origine_Timbre, c.nom_condition, i.nom_image AS main_image
+                  FROM enchere e
+                  JOIN timbre t ON e.id_Enchere = t.id_Enchere
+                  JOIN `condition` c ON t.id_condition = c.id_condition
+                  LEFT JOIN image i ON t.id_Timbre = i.id_Timbre AND i.is_main = 1
+                  WHERE 1=1";
+
+        $params = [];
+
+        if ($condition) {
+            $query .= " AND c.nom_condition = :condition";
+            $params[':condition'] = $condition;
+        }
+
+        if ($paysOrigine && !empty($paysOrigine[0])) {
+            $query .= " AND t.pays_origine_Timbre IN (" . implode(',', array_map(function($pays) { return "'$pays'"; }, $paysOrigine)) . ")";
+        }
+
+        $orderByClauses = [];
+        if ($prixPlancher) {
+            $orderByClauses[] = "e.prix_plancher " . ($prixPlancher == 'asc' ? 'ASC' : 'DESC');
+        }
+
+        if ($datePublication) {
+            $orderByClauses[] = "e.date_debut " . ($datePublication == 'asc' ? 'ASC' : 'DESC');
+        }
+
+        if (!empty($orderByClauses)) {
+            $query .= " ORDER BY " . implode(', ', $orderByClauses);
+        }
+
+        $stmt = $this->prepare($query);
+
+        foreach ($params as $key => $value) {
+            $stmt->bindParam($key, $value);
+        }
+
+        $stmt->execute();
+        return $stmt->fetchAll(\PDO::FETCH_ASSOC);
+    }
     
+
+
 }
 
