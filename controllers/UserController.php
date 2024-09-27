@@ -30,7 +30,7 @@ class UserController {
             $data['email_Utilisateur'] = $data['email'];
             $insert = $user->insert($data);
             if ($insert) {
-                return View::redirect('login');
+                return View::redirect('auth/login');
             } else {
                 return View::render('error');
             }
