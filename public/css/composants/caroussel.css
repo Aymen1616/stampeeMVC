@@ -1,0 +1,106 @@
+
+.caroussel-wrapper {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: var(--police-enorme);
+    margin-top: var(--police-enorme);
+}
+
+.caroussel-tags {
+
+    display: flex;
+    font-family: Roboto;
+    font-size: var(--police-tres-petit);
+    font-style: normal;
+    font-weight: 600;
+    gap: var(--police-grand);
+    line-height: normal;
+    margin: 0 var(--espace-moyen) var(--espace-petit);
+}
+
+.caroussel-tags a {
+    color: var(--nuance-pale-foncee);
+    font-family: Roboto;
+    font-size: var(--police-tres-petit);
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    padding: 5px;
+    text-decoration: none;
+}
+
+.caroussel-tags a:nth-child(2) {
+    background-color: #FACE7F;
+    border-radius: var(--bordure-tres-petit);
+    color: #422B1E;
+}
+
+.caroussel-tags a:hover {
+    background-color: var(--nuance-pale-foncee);
+    border-radius: 2px;
+    color: var(--nuance-foncee-texte);
+}
+
+.caroussel-conteneur {
+    margin: var(--espace-moyen);
+}
+
+
+
+
+.enveloppe-caroussel {
+    margin: 0 50px 0 50px;
+    max-width: 100%;
+    position: relative;
+}
+
+
+.caroussel-images {
+    border-radius: var(--bordure-tres-petit);
+    box-shadow: 0 1.5rem 3rem -.75rem hsla(0, 0, 0, 0.25);
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: var(--espace-moyen-petit);
+    /* max-width: var(--width-enorme); */
+    scroll-behavior: smooth;
+    scroll-snap-type: x mandatory;
+}
+
+.caroussel-images img {
+    /* flex: 0 1 100%; */
+    display: block;
+    height: 100%;
+    object-fit: cover;
+    scroll-snap-align: start;
+    transition: all .2s ease-in-out; 
+}
+
+.caroussel-images img:hover{
+    transform: scale(1.1);
+}
+
+
+.nav-caroussel {
+    bottom: -25px;
+    display: flex;
+    gap: var(--espace-petit);
+    left: 50%;
+    position: absolute;
+    transform: translateX(-50%);
+    z-index: 1;
+}
+
+.nav-caroussel a {
+    background-color: var(--nuance-blanc);
+    border-radius: 50%;
+    border: 1px solid var(--nuance-foncee);
+    height: 0.9rem;
+    opacity: 0.75;
+    transition: opacity ease 250ms;
+    width: 0.9rem;
+}
+
+.nav-caroussel a:hover {
+    opacity: 1;
+}
+

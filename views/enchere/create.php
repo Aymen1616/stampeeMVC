@@ -1,7 +1,8 @@
 {{ include('layouts/header.php', {title:'Ajouter une enchère'}) }}
-<div class="container">
-    <h2 class="mb-4">Ajouter une enchère</h2>
+<div class="conteneur">
+    
     <form action="{{ base }}/enchere/create" method="post" enctype="multipart/form-data">
+    <h2 class="mb-4">Ajouter une enchère</h2>
         <div class="form-group">
             <label for="date_debut">Date de début</label>
             <input type="datetime-local" class="form-control" id="date_debut" name="date_debut" required>
@@ -23,7 +24,7 @@
             </select>
         </div>
     {% endif %}
-        <h3 class="mt-4">Ajouter un timbre</h3>
+        <h2 class="mt-4">Ajouter un timbre</h2>
         <div class="form-group">
             <label for="nom_Timbre">Nom du timbre</label>
             <input type="text" class="form-control" id="nom_Timbre" name="nom_Timbre" required>
@@ -56,7 +57,7 @@
                 {% endfor %}
             </select>
         </div>
-        <h3 class="mt-4">Ajouter des images</h3>
+        <h2 class="mt-4">Ajouter des images</h2>
         <div class="form-group">
             <label for="images">Images</label>
             <input type="file" class="form-control" id="images" name="images[]" multiple required>
@@ -64,4 +65,4 @@
         <button type="submit" class="btn btn-primary">Ajouter</button>
     </form>
 </div>
-<!-- {{ include('layouts/footer.php') }} -->
+{{ include('layouts/footer.php') }}

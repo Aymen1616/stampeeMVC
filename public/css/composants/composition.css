@@ -1,0 +1,61 @@
+/*variables d'espacement*/
+
+body {
+	/* espaces */
+	--espace-tres-petit: 5px;
+	--espace-petit-moyen: 8px;
+	--espace-petit: 10px;
+	--espace-moyen-petit: 15px;
+	--espace-moyen: 20px;
+	--espace-grand: 25px;
+	--espace-tres-grand: 50px;
+	--espace-enorme: 60px;
+
+	--gouttiere: var(--espace-tres-grand);
+}
+
+@media (max-width: 1024px) {
+	body {
+		/* espaces */
+		--espace-tres-petit: 5px;
+		--espace-petit: 10px;
+		--espace-moyen: 15px;
+		--espace-grand: 20px;
+		--espace-tres-grand: 30px;
+		--espace-enorme: 40px;
+	}
+}
+
+@media (max-width: 540px) {
+	body {
+		/* espaces */
+		--espace-tres-petit: 5px;
+		--espace-petit: 10px;
+		--espace-moyen: 15px;
+		--espace-grand: 20px;
+		--espace-tres-grand: 25px;
+
+		--espace-enorme: 40px;
+	}
+}
+
+/*restreindre taille du body*/
+/* body {
+	max-width: var(--largeure-max);
+	margin-left: var(--margin-auto);
+	margin-right: var(--margin-auto);
+}
+
+body > main > * + * {
+	margin-top: var(--espace-enorme);
+}
+
+main > section > *:not(picture) + *:not(picture) {
+	margin-top: var(--gouttiere);
+}
+
+/*margin right sur les titres de sections*/
+/*main .titre-en-page {
+	margin-left: var(--espace-tres-grand);
+	font-size: var(--police-grand);
+} */

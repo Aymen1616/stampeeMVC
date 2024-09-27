@@ -1,7 +1,7 @@
 {{ include('layouts/header.php', {title:'Gérer les utilisateurs'})}}
-<div class="container">
+<div class="conteneur">
     <h2 class="mb-4">Liste des utilisateurs</h2>
-    <table class="table">
+    <table class="table table-custom">
         <thead>
             <tr>
                 <th>ID</th>

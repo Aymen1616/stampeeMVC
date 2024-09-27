@@ -1,0 +1,20 @@
+.valeurs-section {
+    max-width: 90%;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: var(--nuance-pale-foncee);
+    color: var(--nuance-foncee-texte);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.valeurs-section h2 {
+    font-size: 24px;
+    text-align: center;
+}
+
+.valeurs-section ul {
+    list-style: none;
+    padding: 0;
+}  

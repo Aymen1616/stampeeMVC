@@ -1,0 +1,64 @@
+/* Caroussel Media Queries */
+
+@media (width < 805px) {
+    .caroussel-images{
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        overflow: hidden;
+    }
+
+    .caroussel-images img:nth-child(n+4) {
+        display: none;
+    }
+
+    .caroussel-tags {
+        font-weight: 100;
+        gap: var(--espace-petit-moyen);
+        margin: 0 var(--espace-moyen) var(--espace-petit);
+        line-height: normal;
+    }
+
+    & .vers-mission>div {
+        display: flex;
+        flex-direction: column;
+        justify-content: center
+    }
+}
+
+
+@media (width < 890px) {
+    .section-accueil img {
+        display: none;
+    }
+
+    .section-accueil {
+        background: url('../../img/lots/museum-of-new-zealand-te-papa-tongarewa.jpg') no-repeat center center;
+        text-align: center;
+        max-width: 100%;
+        height: auto;
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center;
+        padding: 2rem;
+    }
+
+    .conteneur-appel-a-action {
+        background: rgba(80, 80, 80, 0.5);
+        color: var(--nuance-pale);
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    }
+
+    .btn.acceuil {
+        align-self: center;
+    }
+
+
+    .container {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 1rem
+    }
+   
+}

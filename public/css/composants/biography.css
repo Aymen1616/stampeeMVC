@@ -1,0 +1,23 @@
+.biography-section {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    max-width: 90%;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: var(--nuance-pale-foncee);
+    color: var(--nuance-foncee-texte);
+    text-align: center;
+}
+
+.biography-section div {
+    flex: 1;
+    min-width: 300px;
+}
+
+.biography-section img {
+    width: 600px;
+    /* height: 400px; */
+
+    margin-left: 20px;
+}

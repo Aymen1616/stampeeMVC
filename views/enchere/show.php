@@ -3,10 +3,10 @@
     <h2 class="mb-4">Détails de l'enchère</h2>
     <div class="row">
         <div class="col-md-6">
-            <img id="main-image" src="{{ base }}/uploads/{{ enchere.main_image }}" alt="Image principale" class="img-fluid">
+            <img id="main-image" src="{{ base }}/uploads/{{ enchere.main_image }}" alt="Image principale" >
             <div class="mt-4">
                 {% for image in images %}
-                    <img src="{{ base }}/uploads/{{ image.nom_image }}" alt="Image" class="img-thumbnail" width="100" onclick="document.getElementById('main-image').src='{{ base }}/uploads/{{ image.nom_image }}'">
+                    <img src="{{ base }}/uploads/{{ image.nom_image }}" alt="Image"  width="100" onclick="document.getElementById('main-image').src='{{ base }}/uploads/{{ image.nom_image }}'">
                 {% endfor %}
             </div>
         </div>
@@ -29,7 +29,6 @@
         <input type="hidden" name="id_Enchere" value="{{ enchere.id_Enchere }}">
         <button type="submit" class="btn btn-primary">Ajouter aux favoris</button>
     </form>
-                <h3 class="mt-4">Placer une mise</h3>
                 <form method="post" action="{{ base }}/enchere/place-bid">
                     <div class="form-group">
                         <label for="montant">Montant de la mise</label>

@@ -10,8 +10,8 @@ Route::get('/user/manage-users', 'UserController@manageUsers');
 Route::post('/user/delete-user', 'UserController@deleteUser');
 Route::get('/user/profil', 'AuthController@profil');
 
-Route::get('/login', 'AuthController@index');
-Route::post('/login', 'AuthController@store');
+Route::get('/auth/login', 'AuthController@index');
+Route::post('/auth/login', 'AuthController@store');
 Route::get('/logout', 'AuthController@delete');
 
 
@@ -23,13 +23,10 @@ Route::post('/enchere/update', 'EnchereController@update');
 Route::post('/enchere/delete', 'EnchereController@delete');
 Route::get('/enchere/coup-de-coeur', 'EnchereController@showCoupDeCoeur');
 Route::get('/enchere/show', 'EnchereController@show');
-Route::get('/encheres', 'EnchereController@all');
+Route::get('/enchere/manage', 'EnchereController@all');
 Route::post('/enchere/place-bid', 'EnchereController@placeBid');
-
 Route::post('/enchere/addToFavorites', 'EnchereController@addToFavorites');
 Route::post('/enchere/removeFromFavorites','EnchereController@removeFromFavorites');
-
-
 Route::get('/enchere/filter', 'EnchereController@filter');
 
 

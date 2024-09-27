@@ -1,0 +1,72 @@
+:root {
+	/* z-indexes */
+	--z-menu: 3;
+	--z-1: 1;
+	--z-2: 2;
+
+	/* couleurs */
+	--nuance-pale: #FCE6BF;
+	--nuance-pale-foncee: #FACE7F; 
+	--nuance-fon: #FBD694;
+	--nuance-pale-terre: #A78955;
+	--nuance-foncee: #926938;
+	--nuance-foncee-texte: #422B1E;
+	--nuance-foncee-body: #7D3338;
+	--nuance-gris:#798090;
+	--nuance-gris-clair: #BCBCBC;
+	--nuance-noir:#6970f4;
+	--nuance-blanc:#fff;
+
+
+
+	--colonne: 25ch;
+	--text-widh:80ch;
+
+	--margin-auto: auto;
+
+	/*tailles elements*/
+	--largeure-max: 1920px;
+
+	/*famille de police*/
+	--serif-titre: "Playfair Display", Cambria, Georgia, serif;
+	--serif-soustitre: "Merriweather", Cambria, Georgia, serif;
+	--sans-serif: "Overpass", "Helvetica Neue", Helvetica, Arial, Verdana,
+		sans-serif;
+	--roboto-regular: "Roboto", sans-serif;
+	--roboto-italic: "Roboto Italic", sans-serif;
+
+
+	/* grandeur vh */
+	--grandeur-grand: 100vh;
+	--grandeur-moyen-grand: 90vh;
+	--grandeur-moyen: 70vh;
+	--grandeur-moitie: 50vh;
+
+
+
+	/* Border radius */
+	--bordure-moyen: 10px;
+	--bordure-grand: 15px;
+	--bordure-tres-grand: 20px;
+	--bordure-enorme: 25px;
+	--bordure-petit: 5px;
+	--bordure-tres-petit: 2px;
+
+	/* width */
+	--width-moyen-petit: 10px;
+	--width-moyen: 20px;
+	--width-grand: 40px;
+	--width-tres-grand: 60px;
+	--width-enorme: 80px;
+	--width-petit: 20px;
+	--width-tres-petit: 10px;
+
+	--width-enorme: 300px;
+	--width-tres-enorme: 500px;
+	
+
+}
+
+
+
+

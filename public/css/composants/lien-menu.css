@@ -1,0 +1,18 @@
+.lien-menu {
+  display: block;
+  margin-top: var(--espace-petit);
+  max-width: fit-content;
+  transition-property: border-bottom;
+  transition-duration: 200ms;
+}
+
+.lien-menu:hover {
+  border-bottom: 2px solid var(--nuance-pale);
+}
+
+/* ===file d'ariane==== */
+
+.file-ariane {
+  margin: var(--espace-moyen);
+  color: var(--nuance-pale);
+}

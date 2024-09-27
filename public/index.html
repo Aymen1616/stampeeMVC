@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="Author" content="Jeff Jean-Louis">
+    <meta name="Description" content="Maquette de site web d'enchère Stampee, page d'accueil">
+    <link rel="stylesheet" href="./css/style.css">
+    <title>Acceuil</title>
+</head>
+<body>
+    <nav class="boite-nav">
+        <a href="#"><img class="logo" src="./img/logoStampee-2-alt.png" alt="logo"></a>
+        <div class="boite-pages">
+            <a href="#">Actualités</a>
+            <a href="{{ base }}/enchere/manage">Enchères</a>
+            <a href="./assets/pages/Apropos.html">À propos</a>
+            <a href="#">Contact</a>
+        </div>
+        <div class="section-droite">
+            <div class="recherche">
+                <input type="text" placeholder="Recherche...">
+                <img class="icone-recherche" src="assets/img/svg/search.svg" alt="icone de recherche">
+            </div>
+            <img class="icone-connexion" src="assets/img/svg/flaticon account.svg" alt="icone de connexion">
+        </div>
+    </nav>
+    <main>
+        <section class="section-accueil">
+            <div class="conteneur-appel-a-action">
+                <h1>Enchères en direct</h1>
+                <p>Une collection de timbres rares choisit par le Lord Stampee</p>
+                <h2>Participez maintenant</h2>
+                <button class="btn acceuil">Je participe</button>
+            </div>
+            <img src="assets/img/lots/museum-of-new-zealand-te-papa-tongarewa.jpg" alt="Image d'un timbre rare">
+        </section>
+        <section class="vers-mission">
+            <header>
+                <h2>Notre Mission</h2>
+            </header>
+            <div class="mission">
+                <img src="assets/img/lots/Vatican.jpg" alt="image_mission">
+                <article>
+                    <h3>Des timbres authentiques</h3>
+                    <p>Nous garantissons l'authenticité de chaque timbre mis aux enchères, sélectionnés avec le plus grand soin par nos experts philatéliques. Notre engagement envers l'excellence ne s'arrête pas là – nous nous efforçons de préserver l'histoire et la culture que chaque timbre incarne. Que vous soyez un collectionneur passionné ou un amateur de philatélie, nous valorisons et soutenons la communauté philatélique mondiale, en vous offrant des pièces rares et précieuses qui racontent des histoires uniques à travers le temps.
+
+                    Découvrez une collection exceptionnelle où chaque timbre est non seulement un objet de valeur, mais aussi un fragment d'histoire, soigneusement préservé pour les générations futures. Rejoignez-nous dans cette célébration de la philatélie et enrichissez votre collection avec des pièces authentiques et garanties.</p>
+                    <button  class="btn philosophie"><a href="Apropos.html">Philosophie</a></button>
+                </article>   
+            </div>
+        </section>
+
+        <!-- <section class="en-personne">
+            <header>
+                <h2>Vous voudriez enchérir en personne?</h2>
+            </header>
+            <div class="rencontre">
+                <h3>Parciticipez à une enchère en personne</h3>
+                <a href="#" class="bouton">En savoir plus</a>
+            </div>
+        </section> -->
+
+        <div class="caroussel-wrapper">
+            <div class="caroussel-tags">
+                <a href="#">Recommandations</a>
+                <a href="#">Enchères en vedette</a>
+                <a href="#">Les plus achalandé</a>
+                <a href="#">De la collection du Lord</a>
+            </div>
+            <hr>
+            <section class="caroussel-conteneur">
+                <div class="enveloppe-caroussel">
+                    <div class="caroussel-images">
+                        <img id="slide-1" src="assets/img/greatBritainstamp1.png" alt="Sans image">
+                        <img id="slide-2" src="assets/img/greatBritainstamp2.png" alt="Sans image">
+                        <img id="slide-3" src="assets/img/lots/rare.jpeg" alt="Sans image">
+                        <img id="slide-4" src="assets/img/greatBritainstamp3.png" alt="Sans image">
+                        <img id="slide-5" src="assets/img/lots/Vatican.jpg" alt="Sans image">
+                    </div>
+                    <div class="nav-caroussel">
+                        <a href="#slide-1"></a>
+                        <a href="#slide-2"></a>
+                        <a href="#slide-3"></a>
+                        <a href="#slide-4"></a>
+                        <a href="#slide-5"></a>
+                    </div>
+                </div>
+            </section>
+        </div>
+        <footer>
+            <img src="assets/img/logoStampee-2-alt.png" alt="Logo stampee">
+            <div class="conteneur-liens">
+                <h3>Liens rapide</h3>
+                <hr>
+                <a href="#">Aide</a>
+                <a href="#">Faq</a>
+                <a href="#">Articles</a>
+                <a href="#">Termes & Conditions</a>
+            </div>
+            <div class="conteneur-liens">
+                <h3>Contactez-nous</h3>
+                <hr>
+                <a href="#">Angleterre</a>
+                <a href="#">Canada</a>
+                <a href="#">É.-U.</a>
+                <a href="#">Australie</a>
+            </div>
+            <div class="conteneur-input">
+                <h3>Abonnez-vous</h3>
+                <hr>
+                <div class="input-abonnee-bouton">
+                    <input type="text" placeholder="Entrer votre email...">
+                    <button>Je m'abonne</button>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>©Copyright - Stampee.com</p>
+            </div>
+        </footer>
+    </main>
+</body>
+</html>

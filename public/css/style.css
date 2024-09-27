@@ -1,4 +1,25 @@
-* {
+@import url("./composants/variables.css");
+@import url("./composants/typographie.css");
+@import url("./composants/general.css");
+@import url("./composants/composition.css");
+@import url("./composants/lien-menu.css");
+@import url("./composants/footer.css");
+@import url("./composants/filtres.css");
+@import url("./composants/grille.css");
+@import url("./composants/timbre.css");
+@import url("./composants/boutons.css");
+@import url("./composants/presentation.css");
+@import url('./composants/navigation.css');
+@import url('./composants/apropos.css');
+@import url('./composants/espacement.css');
+@import url('./composants/biography.css');
+@import url('./composants/valeurs.css');
+@import url('./composants/caroussel.css');
+@import url('./composants/media-queries.css');
+
+
+
+/* * {
 	margin: 0;
 	padding: 0;
 	box-sizing: border-box;
@@ -64,8 +85,8 @@ form{
 }
 footer {
     background-color: #e3f2fd;
-    text-align: center;
+    /* text-align: center;
     /* position: fixed; */
-    bottom: 0;
-    width: 100%;
-}
+    /* bottom: 0;
+    width: 100%; }*/
+ 

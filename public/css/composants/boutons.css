@@ -1,0 +1,115 @@
+.bouton {
+  display: inline-flex;
+  min-width: var(--police-enorme-moyen);
+  padding: var(--espace-petit-moyen) var(--espace-moyen-petit);
+  justify-content: center;
+  align-items: center;
+  gap: var(--espace-petit);
+}
+
+.gauche {
+  border: 1px solid var(--nuance-noir);
+  background: var(--nuance-gris);
+}
+
+.droite {
+  background: var(--nuance-noir);
+  color: var(--nuance-foncee-texte);
+}
+
+.buttons-conteneur {
+  display: flex;
+  justify-content: space-between;
+  margin-top: var(--espace-moyen-petit);
+}
+
+.droite:hover {
+  transform: scale(1.1);
+}
+
+.gauche:hover {
+  transform: scale(1.1);
+  background-color: var(--nuance-pale-terre);
+}
+
+.droite:hover {
+  transform: scale(1.1);
+  background-color: var(--nuance-pale-terre);
+}
+
+.btn {
+  color: var(--nuance-foncee-texte);
+}
+
+.btn.acceuil {
+  align-self: flex-start;
+}
+
+.btn.acceuil, .btn.philosophie  {
+  background-color: var(--nuance-pale-foncee);
+  color: var(--nuance-foncee-texte);
+  padding: var(--espace-petit-moyen);
+  border-radius: var(--bordure-petit);
+  font-size: var(--police-petit);
+  cursor: pointer;
+}
+
+.btn.acceuil:hover {
+  background-color: var(--nuance-pale-terre);
+  color: var(--nuance-pale);
+}
+
+.btn.philosophie:hover  {
+  background-color: var(--nuance-pale-terre);
+  color: var(--nuance-pale);
+}
+
+.bouton-actions {
+  display: grid;
+  grid-template-areas:
+    "primary primary"
+    "secondary tertiary";
+  gap: var(--espace-petit);
+  margin-top: var(--espace-moyen);
+}
+
+.bouton-actions .btn, .gauche, .droite {
+  padding: var(--espace-petit) var(--espace-moyen);
+  border: none;
+  border-radius: var(--espace-petit-moyen);
+  background-color: var(--nuance-pale-foncee);
+  cursor: pointer;
+}
+
+.bouton-actions .btn:hover {
+  background-color: var(--nuance-pale-terre);
+}
+
+.bouton-actions .btn.primary {
+  grid-area: primary;
+}
+
+.bouton-actions .btn.secondary {
+  grid-area: secondary;
+  background-color: var(--nuance-foncee-texte);
+  color: var(--nuance-pale);
+}
+
+.bouton-actions .btn.tertiary {
+  grid-area: tertiary;
+  background-color: var(--nuance-foncee-texte);
+  color: var(--nuance-pale);
+}
+
+:is(.bouton-actions .btn.secondary, .bouton-actions .btn.tertiary):hover {
+  background-color: var(--nuance-pale-terre);
+}
+
+button.prev,
+button.next {
+  background-color: transparent;
+  color: var(--nuance-foncee-texte);
+  border: none;
+  font-size: var(--police-moyen-petit);
+  cursor: pointer;
+}

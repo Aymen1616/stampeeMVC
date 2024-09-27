@@ -1,0 +1,23 @@
+        
+        .apropos-section {
+            max-width: 100%;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            text-align: left;
+            background-image: linear-gradient(to right, rgb(135, 39, 39),  rgb(130, 106, 110),rgb(91, 26, 26));
+            /* color: #2c3e50; */
+            text-align: center;
+            align-items: center;
+        }
+        .apropos-section h5 {
+            font-size: 24px;
+            margin: 0;
+        }
+        
+        .apropos-section p {
+            font-size: 16px;
+            margin: 10px 0 0;
+            max-width: 50ch;
+
+        }

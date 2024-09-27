@@ -1,7 +1,7 @@
 {{ include('layouts/header.php', {title:'Coup de cœur'}) }}
+<h2 class="mb-4">Coup de cœur</h2>
 <div class="container">
-    <h2 class="mb-4">Coup de cœur</h2>
-    <table class="table">
+    <table class="table table-custom">
         <thead>
             <tr>
                 <th>ID</th>

@@ -7,19 +7,28 @@ use App\Models\Timbre;
 use App\Models\Image;
 use App\Models\User;
 use App\Models\Mise;
+use App\Models\Favoris;
 
 use App\Providers\View;
 use App\Providers\Validator;
 
 class EnchereController {
+    private function getFlashMessage() {
+        if (isset($_SESSION['message'])) {
+            $message = $_SESSION['message'];
+            unset($_SESSION['message']);
+            return $message;
+        }
+        return null;
+    }
 
     public function create() {
         $condition = new Condition;
         $conditions = $condition->select();
-        return View::render('enchere/create', ['conditions' => $conditions]);
+        $message = $this->getFlashMessage();
+        return View::render('enchere/create', ['conditions' => $conditions, 'message' => $message]);
     }
     
-
     public function store($data) {
         $validator = new Validator;
         $validator->field('date_debut', $data['date_debut'])->required();
@@ -65,6 +74,7 @@ class EnchereController {
                     }
                 }
                 $_SESSION['message'] = 'Enchère ajoutée avec succès.';
+                $message = $this->getFlashMessage();
                 return View::redirect('user/profil');
             } else {
                 return View::render('error');
@@ -74,7 +84,6 @@ class EnchereController {
             return View::render('enchere/create', ['errors' => $errors, 'enchere' => $data]);
         }
     }
-    
     
     public function manageEncheres() {
         $enchere = new Enchere;
@@ -89,7 +98,7 @@ class EnchereController {
                 }
             } 
         }
-    
+        $message = $this->getFlashMessage();
         return View::render('enchere/manage', ['encheres' => $encheres]);
     }
 
@@ -105,6 +114,12 @@ class EnchereController {
             return View::render('error', ['message' => 'Enchère non trouvée.']);
         }
     
+        // Supprimer les favoris associés
+        $favoris = new Favoris;
+        $favorisEntries = $favoris->where('id_Enchere', $data['id'], false);
+        foreach ($favorisEntries as $fav) {
+            $favoris->delete($fav['id_favoris']);
+        }
     
         // Supprimer les mises associées
         $mise = new Mise;
@@ -131,29 +146,18 @@ class EnchereController {
         $delete = $enchere->delete($data['id']);
         if ($delete) {
             $_SESSION['message'] = 'Enchère supprimée avec succès.';
+            $message = $this->getFlashMessage();
             if ($_SESSION['privilege_id'] == 1) {
-                return View::redirect('enchere/manage-encheres');
+                return View::redirect('enchere/manage-encheres', ['message' => $message]);
             } else {
-                return View::redirect('user/profil');
+                return View::redirect('user/profil', ['message' => $message]);
             }
         } else {
             return View::render('error', ['message' => 'Erreur lors de la suppression de l\'enchère.']);
         }
     }
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-
-    
+ 
     public function edit($data = []) {
         if ($_SESSION['privilege_id'] == 1 || isset($_GET['id'])) {
             $id = $_GET['id'];
@@ -163,17 +167,14 @@ class EnchereController {
             if (!$data) {
                 return View::render('error', ['message' => 'Enchère non trouvée.']);
             }
-            
-
-            
+               
             $isAdmin = $_SESSION['privilege_id'] == 1;  
             return View::render('enchere/edit', ['enchere' => $data, 'isAdmin' => $isAdmin]);
         } else {
             return View::render('error', ['msg' => 'Vous n\'avez pas les privilèges nécessaires pour modifier cette enchère.']);
         }
     }
-    
-    
+       
     public function update($data) {
         $validator = new Validator;
         $validator->field('date_debut', $data['date_debut'])->required();
@@ -182,13 +183,12 @@ class EnchereController {
         
         if ($validator->isSuccess()) {
             // Ne pas modifier l'ID de l'utilisateur
-            unset($data['id_Utilisateur']);
-            
+            unset($data['id_Utilisateur']);           
             $enchere = new Enchere;
-            $update = $enchere->update($data, $data['id']);
-            
+            $update = $enchere->update($data, $data['id']);           
             if ($update) {
                 $_SESSION['message'] = 'Enchère modifiée avec succès.';
+                $message = $this->getFlashMessage();
                 if ($_SESSION['privilege_id'] == 1) {
                     return View::redirect('enchere/manage-encheres');
                 } else {
@@ -202,19 +202,13 @@ class EnchereController {
             return View::render('enchere/edit', ['errors' => $errors, 'enchere' => $data]);
         }
     }
-    
-    
-    
-    
-    
+       
     public function showCoupDeCoeur() {
         $enchere = new Enchere;
         $coupDeCoeurEncheres = $enchere->selectCoupDeCoeur();
         return View::render('enchere/coup_de_coeur', ['encheres' => $coupDeCoeurEncheres]);
     }
     
-    
-
     public function show($data) {
         if (isset($data['id'])) {
             $id = $data['id'];
@@ -227,43 +221,37 @@ class EnchereController {
             return View::render('error', ['message' => 'ID de l\'enchère non fourni.']);
         }
     }
-
     
     public function all() {
         $enchere = new Enchere;
         $encheres = $enchere->selectWithTimbre();
         return View::render('enchere/manage', ['encheres' => $encheres]);
     }
-    
-    
+        
     public function placeBid($data) {
         $validator = new Validator;
-        $validator->field('montant', $data['montant'])->required();
-        
+        $validator->field('montant', $data['montant'])->required();        
         if ($validator->isSuccess()) {
             $enchere = new Enchere;
-            $enchereData = $enchere->selectId($data['id_Enchere']);
-            
+            $enchereData = $enchere->selectId($data['id_Enchere']);           
             if ($_SESSION['user_id'] == $enchereData['id_Utilisateur']) {
                 $_SESSION['message'] = 'Vous ne pouvez pas placer une mise sur vos propres enchères.';
                 return View::redirect('user/profil');
-            }
-            
+            }           
             if ($_SESSION['privilege_id'] == 1) {
                 $_SESSION['message'] = 'Les administrateurs ne peuvent pas placer de mises.';
                 return View::redirect('user/profil');
-            }
-            
+            }            
             $data['id_Utilisateur'] = $_SESSION['user_id'];
             $data['id_Enchere'] = $data['id_Enchere'];
             $data['prix_mise'] = $data['montant'];
             $data['date_mise'] = date('Y-m-d H:i:s');
             
             $mise = new Mise;
-            $insert = $mise->insert($data);
-            
+            $insert = $mise->insert($data);            
             if ($insert) {
                 $_SESSION['message'] = 'Mise placée avec succès.';
+                $message = $this->getFlashMessage();
                 return View::redirect('user/profil');
             } else {
                 $_SESSION['message'] = 'Erreur lors de la mise.';
@@ -282,34 +270,30 @@ class EnchereController {
         } else {
             $enchere->addToFavorites($data['id_Enchere'], $_SESSION['user_id']);
             $_SESSION['message'] = 'Enchère ajoutée aux favoris avec succès.';
+            $message = $this->getFlashMessage();
         }
         View::redirect('user/profil');
     }
     
-
     public function removeFromFavorites($data) {
         $enchere = new Enchere();
         $enchere->removeFromFavorites($data['id_Enchere'], $_SESSION['user_id']);
         $_SESSION['message'] = 'Enchère retirée des favoris avec succès.';
+        $message = $this->getFlashMessage();
         View::redirect('user/profil');
     }
 
-
-    public function filter()
-    {
-
+    public function filter(){
         // Vérifier si des filtres sont définis dans la requête
         if (empty($_GET)) {
             // Réinitialiser les filtres dans la session
             unset($_SESSION['filters']);
         }
-
         // Récupérer les filtres depuis la requête
         $prixPlancher = $_GET['prix_plancher'] ?? null;
         $datePublication = $_GET['date_publication'] ?? null;
         $condition = $_GET['condition'] ?? null;
         $paysOrigine = $_GET['pays_origine'] ?? null;
-
         // Stocker les filtres dans la session
         $_SESSION['filters'] = [
             'prix_plancher' => $prixPlancher,
@@ -317,18 +301,13 @@ class EnchereController {
             'condition' => $condition,
             'pays_origine' => $paysOrigine
         ];
-
-        // Assurez-vous que $paysOrigine est un tableau
         if (!is_array($paysOrigine)) {
             $paysOrigine = [$paysOrigine];
         }
-
-        // Charger le modèle
         $enchereModel = new Enchere;
         $encheres = $enchereModel->getFilteredEncheres($prixPlancher, $datePublication, $condition, $paysOrigine);
-
-        // Charger la vue avec les enchères filtrées
         return View::render('enchere/manage', ['encheres' => $encheres]);
     }
     
+
 }

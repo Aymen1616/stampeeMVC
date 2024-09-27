@@ -10,17 +10,16 @@
                     </div>
                     {% set session = session|merge({'message': null}) %}
                 {% endif %}
-                <p><strong>Nom:</strong> {{ user.nom_Utilisateur }}</p>
-                <p><strong>Email:</strong> {{ user.email_Utilisateur }}</p>
+                <p><strong>Bonjour:</strong> {{ user.nom_Utilisateur }}</p>
+
                 
-                <h3 class="mt-4">Ajouter une enchère</h3>
+                <h3 class="mt-4"><strong>Ajouter une enchère</strong></h3>
                 <a href="{{ base }}/enchere/create" class="btn btn-primary btn-block">Ajouter une enchère</a>
                 
-                <h3 class="mt-4">Mes enchères</h3>
+                <h3 class="mt-4"><strong>Mes enchères</strong></h3>
                 <table class="table">
                     <thead>
                         <tr>
-                            <th>ID</th>
                             <th>Date de début</th>
                             <th>Date de fin</th>
                             <th>Prix plancher</th>
@@ -32,7 +31,6 @@
                     <tbody>
                         {% for enchere in encheres %}
                             <tr>
-                                <td>{{ enchere.id_Enchere }}</td>
                                 <td>{{ enchere.date_debut }}</td>
                                 <td>{{ enchere.date_fin }}</td>
                                 <td>{{ enchere.prix_plancher }}</td>
@@ -53,11 +51,10 @@
                     </tbody>
                 </table>
                 
-                <h3 class="mt-4">Enchères sur lesquelles j'ai placé une mise</h3>
+                <h3 class="mt-4"><strong>Mise placé</strong></h3>
                 <table class="table">
                     <thead>
                         <tr>
-                            <th>ID</th>
                             <th>Date de début</th>
                             <th>Date de fin</th>
                             <th>Prix plancher</th>
@@ -70,7 +67,6 @@
                     <tbody>
                         {% for mise in mises %}
                             <tr>
-                                <td>{{ mise.id_Enchere }}</td>
                                 <td>{{ mise.date_debut }}</td>
                                 <td>{{ mise.date_fin }}</td>
                                 <td>{{ mise.prix_plancher }}</td>
@@ -87,11 +83,10 @@
                     </tbody>
                 </table>
                 
-                <h3 class="mt-4">Enchères favorites</h3>
+                <h3 class="mt-4"><strong>Enchères favorites</strong></h3>
                 <table class="table">
                     <thead>
                         <tr>
-                            <th>ID</th>
                             <th>Date de début</th>
                             <th>Date de fin</th>
                             <th>Prix plancher</th>
@@ -103,7 +98,6 @@
                     <tbody>
                         {% for favorite in favorites %}
                             <tr>
-                                <td>{{ favorite.id_Enchere }}</td>
                                 <td>{{ favorite.date_debut }}</td>
                                 <td>{{ favorite.date_fin }}</td>
                                 <td>{{ favorite.prix_plancher }}</td>

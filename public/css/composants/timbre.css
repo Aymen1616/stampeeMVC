@@ -1,0 +1,77 @@
+.timbre {
+    border: 1px solid #dee2e6;
+    padding: 1em;
+    text-align: center;
+    transition: transform 0.3s ease;
+}
+
+.timbre:hover {
+    transform: translateY(-10px); 
+}
+
+.timbre img {
+    width: 300px;
+    height: 200px;
+    object-fit: cover;
+    margin-bottom: var(--espace-moyen-petit);
+}
+
+
+
+/*details-section*/
+.details-section :is(p, h2, h3) {
+    color: #FCE6BF;
+    font-family: roboto;
+}
+
+.container {
+    display: flex;
+    padding: var(--espace-moyen);
+}
+
+.image-section {
+    flex: 1;
+    margin-right: var(--espace-moyen);
+}
+
+.main-image img {
+    width: 100%;
+    height: auto;
+}
+
+.thumbnails {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: var(--espace-petit);
+}
+
+.thumbnail-container {
+    display: flex;
+    overflow-x: hidden;
+}
+
+.thumbnail-container img {
+    width: var(--espace-enorme);
+    height: var(--espace-enorme);
+    margin: 0 var(--espace-tres-petit);
+    cursor: pointer;
+}
+
+
+
+.details-section {
+    flex: 1;
+}
+
+.details-section h2 {
+    margin-top: 0;
+}
+
+.details-section p {
+    margin: var(--espace-tres-petit) 0;
+}
+
+.details-section hr {
+    margin: var(--espace-moyen) 0;
+}

@@ -1,6 +1,6 @@
 {{ include('layouts/header.php', {title: session.privilege_id == 1 ? 'Gérer les enchères' : 'Listes d\'enchères'}) }}
+<h2 class="mb-4">{{ session.privilege_id == 1 ? 'Gérer les enchères' : 'Listes d\'enchères' }}</h2>
 <div class="container">
-    <h2 class="mb-4">{{ session.privilege_id == 1 ? 'Gérer les enchères' : 'Listes d\'enchères' }}</h2>
     {% if session.message is defined %}
         <div class="alert alert-success">
             {{ session.message }}
@@ -55,7 +55,7 @@
         <div class="col-md-9">
             <div class="row">
                 {% for enchere in encheres %}
-                    <div class="col-md-4 mb-4">
+                    <div class="col-md-4 ">
                         <div class="card">
                             <img src="{{ base }}/uploads/{{ enchere.main_image }}" class="card-img-top" alt="Image principale">
                             <div class="card-body">

@@ -1,5 +1,5 @@
 {{ include('layouts/header.php', {title:'Login'})}}
-<div class=" d-flex justify-content-center align-items-center">
+<div class=" d-flex justify-content-center align-items-center" >
     <div class="row">
         <div class="card border-light bg-light mb-4">  
             <div class="card-body">

@@ -38,7 +38,7 @@ class AuthController {
                 if ($_SESSION['privilege_id'] == 1) {
                     return View::redirect('user/manage-users');
                 } else {
-                    return $this->profil();
+                    return View::redirect('user/profil');
                 }
             } else {
                 $errors['message'] = "Veuillez vérifier vos identifiants";
@@ -77,6 +77,6 @@ class AuthController {
     
     public function delete() {
         session_destroy();
-        return View::redirect('login');
+        return View::redirect('auth/login');
     }
 }
